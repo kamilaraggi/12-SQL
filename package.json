@@ -1,7 +1,6 @@
 {
   "name": "12-challenge",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +10,19 @@
   "license": "ISC",
   "dependencies": {
     "console.table": "^0.10.0",
-    "inquirer": "^8.2.0"
-  }
+    "express": "^4.17.1",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamilaraggi/12-SQL.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/kamilaraggi/12-SQL/issues"
+  },
+  "homepage": "https://github.com/kamilaraggi/12-SQL#readme",
+  "description": ""
 }
