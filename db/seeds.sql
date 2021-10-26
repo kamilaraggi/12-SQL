@@ -9,6 +9,7 @@ VALUES
 
 INSERT INTO role
 (id, title, salary, department_id)
+VALUES
 (1, 'CEO', 20000, 5)
 (2, 'Manager', 18000, 5)
 (3, 'Front End Dev', 13000, 4)
@@ -22,6 +23,7 @@ INSERT INTO role
 
 INSERT INTO employee
 (id, first_name, last_name, role_id, manager_id)
+VALUES
 (1, 'Amanda', 'Alves', 10)
 (2, 'Jessica', 'Moraes', 9)
 (3, 'Dani', 'Poeta', 8)
