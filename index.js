@@ -5,8 +5,10 @@ const inquirer = require('inquirer');
 const db = require('./db/connection');
 require('console.table');
 
+
+console.log("     |   |  | |||    EMPLOYEE TRACKER    ||| |  |  |    ")
+
  function questions(){ 
- console.log("     |   |  | |||    EMPLOYEE TRACKER    ||| |  |  |    ")
     inquirer
     .prompt([
     {
@@ -95,11 +97,73 @@ require('console.table');
     db.query('INSERT INTO department SET ?',
     userInput, function(err,res){
       if (err) throw err;
-     console.log('  / / / / / / / Department added!  / / / / / / / /  '),
+     console.log('  / / / / / / / NEW DEPARTMENT ADDED !  / / / / / / / /  '),
      console.log(questions());
     })
    })
   };
   
+  function addRole(){
+    inquirer.prompt([
+      {
+        type:'input',
+        name:'title',
+        message:'Add a role title:'
+      },
+      {
+        type:'input',
+        name:'salary',
+        message:'Salary for this role: $'
+      },
+      {
+        type:'input',
+        name:'department_id',
+        message:'Enter a department id:'
+      },
+    ]).then((userInput) => {
+      db.query('INSERT INTO role SET ?',
+      userInput, function(err,res){
+        if (err) throw err;
+       console.log('  / / / / / / / NEW ROLE ADDED !  / / / / / / / /  '),
+       console.log(questions());
+      })
+  })
+};
+
+function addEmployee(){
+  inquirer.prompt([
+    { 
+      type:'input',
+      name:'first_name',
+      message:'Enter their first name:'
+     },
+     {
+       type:'input',
+       name:'last_name',
+       message:'Enter their last name:'
+     },
+     {
+       type:'inout',
+       name:'role_id',
+       message:'Add their role id:'
+     },
+    // {
+    //  type:'input',
+    //   name:'manager_id',
+    //   message:'Add their manager id:'
+    // }
+  ]).then((userInput) => {
+    db.query('INSERT INTO employee SET ?',
+    userInput, function(err,res){
+      if (err) throw err;
+     console.log('  / / / / / / / NEW EMPLOYEE ADDED !  / / / / / / / /  '),
+     console.log(questions());
+    })
+ })
+};
+
+function updateRole(){
+  
+}
 
   questions();

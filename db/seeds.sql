@@ -10,10 +10,10 @@ VALUES
 INSERT INTO role
 (title, salary, department_id)
 VALUES
-('CEO', 20000, 5),
-('Manager', 18000, 5),
-('Front End Dev', 13000, 4),
-('Back End Dev', 15000, 4),
+('CEO', $20000, 5),
+('Manager', $18000, 5),
+('Front End Dev', $13000, 4),
+('Back End Dev', $15000, 4),
 ('Content Creator', 10000, 3),
 ('Assitent', 6000, 3),
 ('Art Director', 8000, 2),
