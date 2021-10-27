@@ -1,17 +1,12 @@
+
 const fs = require('fs');
 const inquirer = require('inquirer');
+// const connection = require('mysql2/typings/mysql/lib/Connection');
 const db = require('./db/connection');
 require('console.table');
 
-
-
-
-// const department = require('./db/schema.sql');
-
- function questions(){
-    
+ function questions(){ 
  console.log("     |   |  | |||    EMPLOYEE TRACKER    ||| |  |  |    ")
-
     inquirer
     .prompt([
     {
@@ -19,9 +14,9 @@ require('console.table');
       name: 'see',
       message: 'What would you like to do?',
       choices: ['view all departments', 'view all roles', 'view all employees',
-       'add a department', 'add a role', 'add an employee', 'update an employee role', 'quit'],
-       
-    },
+       'add a department', 'add a role', 'add an employee', 'update an employee role', 'quit']
+    }
+    // get code from tutoring session ->
     ]) .then((answers) => {
       switch(answers.see) {
         case "view all departments":
@@ -49,13 +44,11 @@ require('console.table');
                       quit();
       }
     })
-
-    
   };
 
-function departments(){
-  let idDept = [];
-  let nameDpt = [];
+ function departments(){
+  //let idDpt = [];
+  //let nameDpt = [];
 
   db.query('SELECT * FROM department', (err,res) =>{
     if (err) throw err;
@@ -65,8 +58,48 @@ function departments(){
    // res.forEach(({name})=>{
    //   nameDpt.push(name)
    // })
-   console.table(res)
+   console.table(res),
+
+    // My code start
+   console.log(questions())
   })
-}
+ };
+
+ function roles(){
+  db.query('SELECT * FROM role', (err,res) => {
+    if (err) throw err;
+    console.table(res),
+    console.log(questions())
+  })
+};
+
+ function employees(){
+  db.query('SELECT * FROM employee', (err,res) => {
+    if (err) throw err;
+    console.table(res),
+    console.log(questions())
+  })
+  
+ };
+
+ function addDepartment(){
+   inquirer
+   .prompt([
+     {
+       type: 'input',
+       name:'name',
+       message:'Enter a department name:'
+     }
+   ])
+    .then((userInput) => {
+    db.query('INSERT INTO department SET ?',
+    userInput, function(err,res){
+      if (err) throw err;
+     console.log('  / / / / / / / Department added!  / / / / / / / /  '),
+     console.log(questions());
+    })
+   })
+  };
+  
 
   questions();
