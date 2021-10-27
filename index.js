@@ -1,7 +1,6 @@
 
-const fs = require('fs');
+//const fs = require('fs');
 const inquirer = require('inquirer');
-// const connection = require('mysql2/typings/mysql/lib/Connection');
 const db = require('./db/connection');
 require('console.table');
 
@@ -163,7 +162,31 @@ function addEmployee(){
 };
 
 function updateRole(){
-  
-}
+ inquirer.prompt([
+  {
+    type: 'input',
+    name: 'role_id',
+    message: 'Enter the role id?'
+ },
+ {
+    type: 'input',
+    name: 'employee_id',
+    message: 'Enter the employee id?'
+ }
 
-  questions();
+ ]).then((userInput) => {
+ db.query('UPDATE employee SET role_id = ? where id = ?',
+ [userInput.role_id, userInput.employee_id], function (err, res) {
+    if (err) throw err;
+    console.log('  / / / / / / / EMPLOYEE UPDATED !  / / / / / / / /  ');
+    questions();
+ })
+ })
+};
+
+function quit(){
+  console.log('  / / / / / / / ALL SET, good bye !  / / / / / / / /  ')
+};
+
+
+questions();
